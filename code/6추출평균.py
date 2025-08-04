@@ -10,14 +10,3 @@ df['equipment_moisture_avg'] = df[moisture_cols].mean(axis=1)
 
 # 결과 저장 (원한다면)
 df.to_csv('추출값평균.csv', index=False)
-------------------------------------------------------------------------------------------------------------------------------------------------
-import pandas as pd
-
-# 기존 CSV 불러오기
-df = pd.read_csv("추출값평균.csv")
-
-# 필요한 컬럼만 추출
-new_df = df[['subject_no', 'equipment_moisture_avg']]
-
-# 새로운 CSV 파일 저장
-new_df.to_csv("평균.csv", index=False, encoding="utf-8-sig")
