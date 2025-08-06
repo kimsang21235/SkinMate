@@ -3,7 +3,7 @@ import shutil
 import pandas as pd
 
 # 1. 경로 설정
-csv_path = "파일.csv"  # 'filename'과 'class' 컬럼 포함된 CSV
+csv_path = "moisture.csv"  # 'filename'과 'moisture_class' 컬럼 포함된 CSV
 base_dir = os.getcwd()          # 현재 작업 디렉토리 기준
 output_dir = os.path.join(base_dir, "images")
 
@@ -16,7 +16,7 @@ os.makedirs(output_dir, exist_ok=True)
 # 4. 파일 검색 및 moisture_class별 폴더로 복사
 for idx, row in df.iterrows():
     filename = row['filename']
-    class = str(row['class'])  # 폴더 이름용
+    moisture_class = str(row['moisture_class'])  # 폴더 이름용
 
     found_path = None
 
@@ -32,7 +32,7 @@ for idx, row in df.iterrows():
         continue
 
     # moisture_class별 하위 폴더 생성
-    class_folder = os.path.join(output_dir, class)
+    class_folder = os.path.join(output_dir, moisture_class)
     os.makedirs(class_folder, exist_ok=True)
 
     # 복사 경로 설정 및 복사
@@ -40,4 +40,4 @@ for idx, row in df.iterrows():
     shutil.copy2(found_path, dest_path)
     # shutil.move(found_path, dest_path)  # 이동하려면 이 줄로 교체
 
-    print(f"[OK] {filename} → {class} 폴더 복사 완료")
+    print(f"[OK] {filename} → {moisture_class} 폴더 복사 완료")
